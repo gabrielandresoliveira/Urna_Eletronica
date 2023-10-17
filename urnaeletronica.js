@@ -5,7 +5,9 @@ function urnaeletronica() {
         let nome1;
         let nome2;
         let nome3;
+        let senha;
 
+        senha = prompt("Digite uma senha de 6 digitos")
         nome1 = prompt("Digite o nome do candidato 1");
         nome2 = prompt("Digite o nome do candidato 2");
         nome3 = prompt("Digite o nome do candidato 3");
@@ -15,9 +17,16 @@ function urnaeletronica() {
         let candidato3 = 0;
         let vtbranco = 0;
         let vtnulo = 0;
-        
+        let decisao = "N";
+
         do {
-                opcao = parseInt(prompt("Digite a opção"));
+                opcao = parseInt(prompt("Digite a opção \n " +
+                        "[1]" + nome1 + "\n" +
+                        "[2]" + nome2 + "\n" +
+                        "[3]" + nome3 + "\n" +
+                        "[4] Voto branco\n" +
+                        "[5] Voto nulo\n" +
+                        "Digite a senha para encerrar \n"));
                 console.log("Linha de instrução");
                 contador++
                 if (opcao == 1) {
@@ -35,14 +44,19 @@ function urnaeletronica() {
                 } else if (opcao == 5) {
                         console.log("Você votou nulo")
                         vtnulo++;
+                } else if (opcao == senha) {
+                        decisao = prompt("Se realmente deseja encerrar a votação digite 'S' para sim e 'N' para não")
+                        // if (decisao == "N") {
+                        // }
                 }
-        } while (opcao !== 0);
+        } while (decisao != "S");
+
         contador = contador - 1;
         console.log("Contagem:", contador);
-        
-        var totaldevotos = (candidato1 + candidato2 +candidato3 + vtbranco + vtnulo)
+
+        let totaldevotos = (candidato1 + candidato2 + candidato3 + vtbranco + vtnulo)
         console.log("Este é o total de votos", totaldevotos)
-        
+
         console.log("Este é o total de votos do", nome1, candidato1)
         console.log("Este é o percentual", (candidato1 / totaldevotos) * 100)
 
@@ -62,19 +76,16 @@ function urnaeletronica() {
         if (candidato1 > candidato2 && candidato1 > candidato3) {
                 console.log("O vencedor é ", nome1)
                 console.log("O total de votos é", candidato1 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:",  ((candidato1 + vtbranco)/totaldevotos ) * 100 )
+                console.log("A porcentagem de votos desse candidato é:", ((candidato1 + vtbranco) / totaldevotos) * 100)
         } else if (candidato2 > candidato1 && candidato2 > candidato3) {
                 console.log("O vencedor é ", nome2)
                 console.log("O total de votos é", candidato2 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:",  ((candidato2 + vtbranco)/totaldevotos ) * 100 )
+                console.log("A porcentagem de votos desse candidato é:", ((candidato2 + vtbranco) / totaldevotos) * 100)
         } else if (candidato3 > candidato1 && candidato3 > candidato2) {
                 console.log("O vencedor é ", nome3)
                 console.log("O total de votos é", candidato3 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:",  ((candidato3 + vtbranco)/totaldevotos ) * 100 )
+                console.log("A porcentagem de votos desse candidato é:", ((candidato3 + vtbranco) / totaldevotos) * 100)
         } else {
                 console.log("Empate")
         }
 }
-
-
-urnaeletronica();
