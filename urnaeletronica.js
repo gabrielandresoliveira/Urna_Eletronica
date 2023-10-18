@@ -17,7 +17,7 @@ function urnaeletronica() {
         let candidato3 = 0;
         let vtbranco = 0;
         let vtnulo = 0;
-        let decisao = "N";
+        let decisao = false;
 
         do {
                 opcao = parseInt(prompt("Digite a opção \n " +
@@ -44,12 +44,22 @@ function urnaeletronica() {
                 } else if (opcao == 5) {
                         console.log("Você votou nulo")
                         vtnulo++;
-                } else if (opcao == senha) {
-                        decisao = prompt("Se realmente deseja encerrar a votação digite 'S' para sim e 'N' para não")
-                        // if (decisao == "N") {
-                        // }
+                }else if (opcao == 6) {
+                        console.log("Opção invalida voto anulado")
+                        vtnulo++;
+                }else if (opcao == 7) {
+                        console.log("Opção invalida voto anulado")
+                        vtnulo++;
+                }else if (opcao == 8) {
+                        console.log("Opção invalida voto anulado")
+                        vtnulo++;
+                }else if (opcao == 9) {
+                        console.log("Opção invalida voto anulado")
+                        vtnulo++;
+                }else if (opcao == senha) {
+                       decisao=  confirm("Se realmente deseja encerrar a votação clique em ok se não cancele")
                 }
-        } while (decisao != "S");
+        } while (decisao != true);
 
         contador = contador - 1;
         console.log("Contagem:", contador);
