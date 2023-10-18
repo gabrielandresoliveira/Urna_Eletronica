@@ -17,7 +17,8 @@ function urnaeletronica() {
         let candidato3 = 0;
         let vtbranco = 0;
         let vtnulo = 0;
-        let decisao = false;
+        let decisao_de_saida = false;
+        let decisao_de_vtnulo = false;
 
         do {
                 opcao = parseInt(prompt("Digite a opção \n " +
@@ -41,60 +42,59 @@ function urnaeletronica() {
                 } else if (opcao == 4) {
                         console.log("Você votou em branco")
                         vtbranco++;
-                } else if (opcao == 5) {
-                        console.log("Você votou nulo")
-                        vtnulo++;
-                }else if (opcao == 6) {
-                        console.log("Opção invalida voto anulado")
-                        vtnulo++;
-                }else if (opcao == 7) {
-                        console.log("Opção invalida voto anulado")
-                        vtnulo++;
-                }else if (opcao == 8) {
-                        console.log("Opção invalida voto anulado")
-                        vtnulo++;
-                }else if (opcao == 9) {
-                        console.log("Opção invalida voto anulado")
-                        vtnulo++;
-                }else if (opcao == senha) {
-                       decisao=  confirm("Se realmente deseja encerrar a votação clique em ok se não cancele")
+                } else if (opcao == senha) {
+                        decisao_de_saida = confirm("Se realmente deseja encerrar a votação clique em ok se não cancele")
+                } else {
+                        decisao2 = confirm("Opção de voto inválida, seu voto será anulado se concordar clique em 'ok' se deseja refazer seu voto aperte em 'cancelar'")
+                        if (decisao_de_vtnulo == true) {
+                                console.log("Você votou em nulo");
+                                vtnulo++;
+                        }
                 }
-        } while (decisao != true);
+        } while (decisao_de_saida != true);
 
+        const totaldevotos = (candidato1 + candidato2 + candidato3 + vtbranco + vtnulo)
         contador = contador - 1;
+        percentual_candidato1 = (candidato1 / totaldevotos) * 100;
+        percentual_candidato2 = (candidato2 / totaldevotos) * 100;
+        percentual_candidato3 = (candidato3 / totaldevotos) * 100;
+        percentual_brancos = (vtbranco / totaldevotos) * 100;
+        percentual_nulos = (vtnulo / totaldevotos) * 100
         console.log("Contagem:", contador);
 
-        let totaldevotos = (candidato1 + candidato2 + candidato3 + vtbranco + vtnulo)
         console.log("Este é o total de votos", totaldevotos)
 
         console.log("Este é o total de votos do", nome1, candidato1)
-        console.log("Este é o percentual", (candidato1 / totaldevotos) * 100)
+        console.log("Este é o percentual", percentual_candidato1.toFixed(2) + '%');
 
         console.log("Este é o total de votos do", nome2, candidato2)
-        console.log("Este é o percentual", (candidato2 / totaldevotos) * 100)
+        console.log("Este é o percentual", percentual_candidato2.toFixed(2) + '%');
 
         console.log("Este é o total de votos do", nome3, candidato3)
-        console.log("Este é o percentual", (candidato3 / totaldevotos) * 100)
+        console.log("Este é o percentual", percentual_candidato3.toFixed(2) + '%');
 
         console.log("Este é o total de votos em brancos", vtbranco)
-        console.log("Este é o percentual", (vtbranco / totaldevotos) * 100)
+        console.log("Este é o percentual", percentual_brancos.toFixed(2) + '%');
 
         console.log("Este é o total de votos nulos", vtnulo)
-        console.log("Este é o percentual", (vtnulo / totaldevotos) * 100)
+        console.log("Este é o percentual", percentual_nulos.toFixed(2) + '%')
 
+        porcentagem_vencedor_candidato1 = ((candidato1 + vtbranco) / totaldevotos) * 100
+        porcentagem_vencedor_candidato2 = ((candidato2 + vtbranco) / totaldevotos) * 100
+        porcentagem_vencedor_candidato3 = ((candidato3 + vtbranco) / totaldevotos) * 100
 
         if (candidato1 > candidato2 && candidato1 > candidato3) {
                 console.log("O vencedor é ", nome1)
                 console.log("O total de votos é", candidato1 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:", ((candidato1 + vtbranco) / totaldevotos) * 100)
+                console.log("A porcentagem de votos desse candidato é:" , porcentagem_vencedor_candidato1.toFixed(2) + '%')
         } else if (candidato2 > candidato1 && candidato2 > candidato3) {
                 console.log("O vencedor é ", nome2)
                 console.log("O total de votos é", candidato2 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:", ((candidato2 + vtbranco) / totaldevotos) * 100)
+                console.log("A porcentagem de votos desse candidato é:" , porcentagem_vencedor_candidato2.toFixed(2) + '%')
         } else if (candidato3 > candidato1 && candidato3 > candidato2) {
                 console.log("O vencedor é ", nome3)
                 console.log("O total de votos é", candidato3 + vtbranco)
-                console.log("A porcentagem de votos desse candidato é:", ((candidato3 + vtbranco) / totaldevotos) * 100)
+                console.log("A porcentagem de votos desse candidato é:" , porcentagem_vencedor_candidato3.toFixed(2) + '%')
         } else {
                 console.log("Empate")
         }
