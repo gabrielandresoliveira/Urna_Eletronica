@@ -1,4 +1,10 @@
+function data_fim() {
+        const data = new Date();
+        return data
+}
+
 function urnaeletronica() {
+
         let contador = 0;
         let opcao;
 
@@ -8,17 +14,20 @@ function urnaeletronica() {
         let senha_adm;
         let senha_mesario;
 
+        const data_inicio = new Date();
+        console.log("Inicialização da urna às: " + data_inicio.toLocaleString())
+
         senha_adm = prompt("Digite uma senha de administrador")
         senha_mesario = prompt("Digite uma senha de mesário:")
-        
+
         do {
                 nome1 = prompt("Digite o nome do candidato 1");
                 nome2 = prompt("Digite o nome do candidato 2");
                 nome3 = prompt("Digite o nome do candidato 3");
 
                 inicicao = confirm("VocÊ deseja iniciar a urna ou reeditar os nomes? \nUse 'ok' para iniciar e 'cancelar' para reeditar. \nOs nomes atuais são \n" + "Candidato 1:" + nome1 + "\n" + "Candidato 2:" + nome2 + "\n" + "Candidato 3:" + nome3)
-                
-        }while (inicicao == false)
+
+        } while (inicicao == false)
 
         let candidato1 = 0;
         let candidato2 = 0;
@@ -33,33 +42,40 @@ function urnaeletronica() {
                         "[1]" + nome1 + "\n" +
                         "[2]" + nome2 + "\n" +
                         "[3]" + nome3 + "\n" +
-                        "[4] Voto branco\n" +
-                        "[5] Voto nulo\n" +
+                        "[4] Voto branco\n"  +
                         "Digite a senha para encerrar \n "));
                 console.log("Linha de instrução");
                 contador++
 
                 if (opcao == 1) {
-                        console.log("Você votou no", nome1);
-                        candidato1++;
-
+                        decisao_De_voto = confirm("Você votou em " + nome1 + ", deseja continuar?")
+                        if (decisao_De_voto == true) {
+                                console.log("Você votou no", nome1);
+                                candidato1++;
+                        }
                 } else if (opcao == 2) {
-                        console.log("Você votou no", nome2);
-                        candidato2++;
-
+                        decisao_De_voto = confirm("Você votou em " + nome2 + ", deseja continuar?")
+                        if (decisao_De_voto == true) {
+                                console.log("Você votou no", nome2);
+                                candidato2++;
+                        }
                 } else if (opcao == 3) {
-                        console.log("Você votou no", nome3)
-                        candidato3++;
-
+                        decisao_De_voto = confirm("Você votou em " + nome3 + ", deseja continuar?")
+                        if (decisao_De_voto == true) {
+                                console.log("Você votou no", nome3);
+                                candidato3++;
+                        }
                 } else if (opcao == 4) {
-                        console.log("Você votou em branco")
-                        vtbranco++;
-
+                        decisao_De_voto = confirm("Você votou em branco, deseja continuar?")
+                        if (decisao_De_voto == true) {
+                                console.log("Você votou em branco");
+                                vtbranco++;
+                        }
                 } else if (opcao == senha_adm || opcao == senha_mesario) {
                         decisao_de_saida = confirm("Se realmente deseja encerrar a votação clique em ok se não cancele")
 
                 } else {
-                        decisao_de_vtnulo = confirm("Opção de voto inválida, seu voto será anulado se concordar clique em 'ok' se deseja refazer seu voto aperte em 'cancelar'")
+                        decisao_de_vtnulo = confirm("Opção de voto inválida, seu voto será anulado, se concordar clique em 'ok' se deseja refazer seu voto aperte em 'cancelar'")
                         if (decisao_de_vtnulo == true) {
                                 console.log("Você votou em nulo");
                                 vtnulo++;
@@ -117,5 +133,6 @@ function urnaeletronica() {
         } else {
                 console.log("Empate")
         }
+        console.log("A data de inicialização da urna foi às: " + data_inicio.toLocaleString() + "\nA data de finalização da urna foi às: \n" + data_fim().toLocaleString())
 }
 
